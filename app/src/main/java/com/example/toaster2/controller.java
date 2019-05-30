@@ -1,14 +1,30 @@
 package com.example.toaster2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class controller {
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
+//
+//import com.facebook.drawee.view.SimpleDraweeView;
+//import com.facebook.fresco.samples.showcase.BaseShowcaseFragment;
+//import com.facebook.fresco.samples.showcase.R;
+//import com.facebook.fresco.samples.showcase.misc.ImageUriProvider;
+
+public class controller extends Activity {
+    protected void onCreate(Bundle savedInstanceState) {
+        Fresco.initialize(this);
+        setContentView(R.layout.activity_main);
+    }
 
     private Context context;
     private String msg="Default";
@@ -51,38 +67,6 @@ public class controller {
     }
 
 
-
-//    public void CustomToast(View view, String msg, Context context, LayoutInflater inflater)
-//    {   //TODO: delete this fn
-//
-//        //Context context=getApplicationContext();
-//        //LayoutInflater inflater=getLayoutInflater();
-//        //View customToastroot=inflater.inflate(R.layout.custom_toast,(ViewGroup) findViewById(R.id.custom_toast_container));
-//
-//        View customToastroot=inflater.inflate(R.layout.custom_toast,null);
-//
-//        //text.setText("this string");
-//
-//
-//        Toast cust =new Toast(context);
-//        //cust.setText("check");
-//        cust.setView(customToastroot);
-//
-//        TextView text = (TextView) customToastroot.findViewById(R.id.textv);
-//        System.out.println(text);
-//        text.setText(msg);
-//
-//
-//        cust.setDuration(Toast.LENGTH_SHORT);
-//        cust.show();
-//
-//    }
-
-//    public void CusomtToast(View view, Context context, LayoutInflater inflater)
-//    {
-//        this.CustomToast(view,"default", context, inflater);
-//    }
-
     public void show()
     {
 
@@ -102,6 +86,9 @@ public class controller {
         if(this.img==0) {
             image.setVisibility(View.GONE);
         }
+
+
+
         customToastroot.setBackgroundResource(R.drawable.draw_bg);
         GradientDrawable bgShape = (GradientDrawable)customToastroot.getBackground();
         bgShape.setColor(this.bg);
