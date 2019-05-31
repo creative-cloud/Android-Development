@@ -1,8 +1,12 @@
 package com.example.toaster2;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +15,8 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
-//
-//import com.facebook.drawee.view.SimpleDraweeView;
-//import com.facebook.fresco.samples.showcase.BaseShowcaseFragment;
-//import com.facebook.fresco.samples.showcase.R;
-//import com.facebook.fresco.samples.showcase.misc.ImageUriProvider;
 
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +69,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                if (!ensureExternalStoragePermissionGranted()) {
+                    return;
+                }
+
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1);
+
+
+
                 controller obj= new controller();
 
                 obj
@@ -80,10 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         .setImg(android.R.drawable.star_big_on)
                         .show();
 
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
+
 
             }
         });
@@ -142,6 +151,20 @@ public class MainActivity extends AppCompatActivity {
     public void SimpleToast(View view) {
         Toast.makeText(this, "Works", Toast.LENGTH_SHORT).show();
     }
+
+    private boolean ensureExternalStoragePermissionGranted() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    0);
+            
+            return false;
+        }
+        return true;
+    }
+
 
 }
 
