@@ -22,8 +22,6 @@ public class GridAdapter extends ArrayAdapter<String> {
 
     private Context mContext;
     private LayoutInflater mInflater;
-//    private int layoutResource;
-//    private String mAppend;
     private ArrayList<String> imgURLs;
 
     GridAdapter(Context context, ArrayList<String> imgURLs) {
@@ -77,8 +75,8 @@ public class GridAdapter extends ArrayAdapter<String> {
     {
 //        Uri uri=Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
         Fresco.getImagePipeline().clearCaches();
-        SimpleDraweeView draweeView = (SimpleDraweeView)view.findViewById(R.id.drawee_view);
-        draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
+//        SimpleDraweeView draweeView = (SimpleDraweeView)view.findViewById(R.id.drawee_view);
+//        draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
 //        Uri uri = new Uri.Builder()
 //                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
 //                .path(String.valueOf(imageID))
@@ -90,7 +88,7 @@ public class GridAdapter extends ArrayAdapter<String> {
 //        draweeView.setImageURI("https://raw.githubusercontent.com/facebook/fresco/master/docs/static/logo.png");
 //            draweeView.setImageURI(imageUri);
 //        draweeView.setController(
-        draweeView.setImageURI("file:///storage/4DD2-986A/DCIM/Camera/20170527_190139.jpg");
+//        draweeView.setImageURI("file:///storage/4DD2-986A/DCIM/Camera/20170527_190139.jpg");
 //                Fresco.newDraweeControllerBuilder()
 //                        .setTapToRetryEnabled(true)
 ////                        .setUri(uri)

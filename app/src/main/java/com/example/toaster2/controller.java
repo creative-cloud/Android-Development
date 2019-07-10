@@ -18,7 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 //import com.facebook.drawee.view.SimpleDraweeView;
 //import com.facebook.fresco.samples.showcase.BaseShowcaseFragment;
 //import com.facebook.fresco.samples.showcase.R;
-//import com.facebook.fresco.samples.showcase.misc.ImageUriProvider;
+//import com.facebook.fresco.sampl  es.showcase.misc.ImageUriProvider;
 
 public class controller extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
