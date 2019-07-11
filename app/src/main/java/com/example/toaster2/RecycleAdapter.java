@@ -51,7 +51,6 @@ public class RecycleAdapter extends RecyclerView.Adapter {
         SimpleDraweeView draweeView = (SimpleDraweeView) viewHolder.itemView.findViewById(R.id.img_view);
         draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
         imgURLs.set(i, imgURLs.get(i).replace(" ", "/"));
-//        imgURLs.set(i, "file://".concat(imgURLs.get(i)));
         Uri imageUri = Uri.fromFile(new File(imgURLs.get(i)));// For files on device
         draweeView.setImageURI(imgURLs.get(i));
         String path=imgURLs.get(i).substring(7);
