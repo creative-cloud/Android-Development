@@ -82,39 +82,40 @@ public class MainActivity extends AppCompatActivity {
                     web.add(path);
 */
 
-
                     //local images
+//
+//                    File fileDirectory = new File("/storage/4DD2-986A/Scenery/");
+//                    File[] dirFiles = fileDirectory.listFiles();
+//                    if (dirFiles.length != 0) {
+//                        for (File file : dirFiles) {
+//                            web.add("file://"+file.toString());
+//                        }
+//                    }
 
 
-                    File fileDirectory = new File("/storage/4DD2-986A/Scenery/");
-                    File[] dirFiles = fileDirectory.listFiles();
-                    if (dirFiles.length != 0) {
-                        for (File file : dirFiles) {
-                            web.add("file://"+file.toString());
-                        }
-                    }
+                    web.add("https://picsum.photos/id/249/400/200");
+                    web.add("https://picsum.photos/id/225/400/400");
+                    web.add("https://picsum.photos/id/82/40/100");
+                    web.add("https://picsum.photos/id/960/400/50");
+                    web.add("https://picsum.photos/id/151/500/200");
+                    web.add("https://picsum.photos/id/507/400/200");
+                    web.add("https://picsum.photos/id/1055/40/100");
+                    web.add("https://picsum.photos/id/468/200/200");
+                    web.add("https://picsum.photos/id/887/300/200");
+                    web.add("https://picsum.photos/id/618/500/200");
+                    web.add("https://picsum.photos/id/800/400/200");
+                    web.add("https://picsum.photos/id/452/400/200");
+                    web.add("https://picsum.photos/id/159/400/200");
+                    web.add("https://picsum.photos/id/500/400/20");
+                    web.add("https://picsum.photos/id/836/500/200");
+                    web.add("https://picsum.photos/id/350/400/200");
+                    web.add("https://picsum.photos/id/235/400/400");
+                    web.add("https://picsum.photos/id/344/40/100");
+                    web.add("https://picsum.photos/id/157/400/50");
+                    web.add("https://picsum.photos/id/200/500/200");
+                    web.add("https://simgbb.com/images/logo.png");
+                    web.add("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
 
-
-                    /*web.add("http://lorempixel.com/400/200");
-                    web.add("http://lorempixel.com/200/400");
-                    web.add("http://lorempixel.com/40/200");
-                    web.add("http://lorempixel.com/400/20");
-                    web.add("http://lorempixel.com/500/200");
-                    web.add("http://lorempixel.com/400/200");
-                    web.add("http://lorempixel.com/100/400");
-                    web.add("http://lorempixel.com/200/200");
-                    web.add("http://lorempixel.com/300/200");
-                    web.add("http://lorempixel.com/500/200");
-                    web.add("http://lorempixel.com/400/200");
-                    web.add("http://lorempixel.com/200/400");
-                    web.add("http://lorempixel.com/40/200");
-                    web.add("http://lorempixel.com/400/20");
-                    web.add("http://lorempixel.com/500/200");
-                    web.add("http://lorempixel.com/400/200");
-                    web.add("http://lorempixel.com/200/400");
-                    web.add("http://lorempixel.com/40/200");
-                    web.add("http://lorempixel.com/400/20");
-                    web.add("http://lorempixel.com/500/200");*/
 
                     RecycleAdapter recycleAdapter = new RecycleAdapter(MainActivity.this, web);
                     recyclerView.setAdapter(recycleAdapter);
@@ -143,12 +144,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean ensureExternalStoragePermissionGranted() {
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {         //if doesn't already have permission
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED ) {         //if doesn't already have permission
             ActivityCompat.requestPermissions(
                     this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INTERNET},
+                    new String[]{Manifest.permission.INTERNET},
                     0);
             return false;
         }

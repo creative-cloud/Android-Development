@@ -1,6 +1,7 @@
 package com.example.toaster2;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,10 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.ImageRequest;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<String> {
@@ -52,7 +58,8 @@ public class GridAdapter extends ArrayAdapter<String> {
 //                        .setTapToRetryEnabled(true)
 //                        .setUri(imagePath)
 //                        .build());
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
+
+        DraweeController controller= Fresco.newDraweeControllerBuilder()
                 .setUri(imagePath)
                 .setTapToRetryEnabled(true)
                 .setTapToRetryEnabled(true)
