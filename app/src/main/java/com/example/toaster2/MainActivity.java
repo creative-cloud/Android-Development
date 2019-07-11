@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), calculateNoOfColumns(this,180));
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     //Grid adaptor for image
 
                     File fileDirectory = new File("/storage/4DD2-986A/Scenery/");
-                    File[] dirFiles = fileDirectory.listFiles();
+                    File[] dirFiles = fileDirectory.listFiles();    
                     if (dirFiles.length != 0) {
                         for (File file : dirFiles) {
                             web.add("file://"+file.toString());
@@ -178,6 +179,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public static int calculateNoOfColumns(Context context, float columnWidthDp) { // For example columnWidthdp=180
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
+        int noOfColumns = (int) (screenWidthDp / columnWidthDp + 0.5); // +0.5 for correct rounding to int.
+        return noOfColumns;
     }
 
 

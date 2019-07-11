@@ -1,6 +1,8 @@
 package com.example.toaster2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -52,8 +54,9 @@ public class RecycleAdapter extends RecyclerView.Adapter {
 //        imgURLs.set(i, "file://".concat(imgURLs.get(i)));
         Uri imageUri = Uri.fromFile(new File(imgURLs.get(i)));// For files on device
         draweeView.setImageURI(imgURLs.get(i));
-        if(i%3==0)
-            draweeView.setAspectRatio((float)0.677);
+        String path=imgURLs.get(i).substring(7);
+        Bitmap myBitmap = BitmapFactory.decodeFile(path);
+                draweeView.setAspectRatio((float)myBitmap.getWidth()/myBitmap.getHeight());
 //        draweeView.setAspectRatio(imgURLs.get(i).gett/imgURLs.get(i).);
         Log.e("image url",""+imgURLs.get(i));
     }
