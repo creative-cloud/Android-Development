@@ -1,14 +1,9 @@
 package com.example.toaster2;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Animatable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +15,17 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
-import java.io.File;
+
 import java.util.ArrayList;
 
-public class RecycleAdapter extends RecyclerView.Adapter  {
+public class RecycleAdapterImages extends RecyclerView.Adapter  {
 
 
     private Context mContext;
     private LayoutInflater mInflater;
     private ArrayList<String> imgURLs;
 
-    RecycleAdapter(Context context, ArrayList<String> imgURLs) {
+    RecycleAdapterImages(Context context, ArrayList<String> imgURLs) {
         super();
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mContext = context;
@@ -40,10 +35,10 @@ public class RecycleAdapter extends RecyclerView.Adapter  {
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = mInflater.inflate(R.layout.grid_view, null, false);
         // set the view's size, margins, paddings and layout parameters
-        MyViewHolder vh = new MyViewHolder(v);
+        ImageViewHolder vh = new ImageViewHolder(v);
         return vh;
 
     }
@@ -112,11 +107,11 @@ public class RecycleAdapter extends RecyclerView.Adapter  {
         return imgURLs.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         SimpleDraweeView draweeView;
 
-        public MyViewHolder(View itemView) {
+        public ImageViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             draweeView = itemView.findViewById(R.id.img_view);

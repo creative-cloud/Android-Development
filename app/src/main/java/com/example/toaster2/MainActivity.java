@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
@@ -20,8 +19,6 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 
-
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -34,11 +31,10 @@ public class MainActivity extends AppCompatActivity {
         final View view = findViewById(android.R.id.content);
         Uri uri = Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-
 
         Button Clicked = (Button) findViewById(R.id.button1);
 
@@ -56,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //start grid
 
-                ArrayAdapter<String> adapter;
                 ArrayList<String> web = new ArrayList<String>();
 
 
@@ -118,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
                     web.add("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
 
 
-                    RecycleAdapter recycleAdapter = new RecycleAdapter(MainActivity.this, web);
-                    recyclerView.setAdapter(recycleAdapter);
+                    RecycleAdapterImages recycleAdapterImages = new RecycleAdapterImages(MainActivity.this, web);
+                    recyclerView.setAdapter(recycleAdapterImages);
                     recyclerView.setItemAnimator(null);
 
                     recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                         @Override
                         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                             super.onScrollStateChanged(recyclerView, newState);
-                            ((StaggeredGridLayoutManager)recyclerView.getLayoutManager()).invalidateSpanAssignments();
+                            ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
                         }
                     });
 
@@ -140,32 +135,102 @@ public class MainActivity extends AppCompatActivity {
 //                        }
 //                    });
 
-            } catch(
-            Throwable e)
-
-            {
-                e.printStackTrace();
-            } finally
-
-            {
-                if (cursor != null) {
-                    try {
-                        cursor.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                } catch (
+                        Throwable e) {
+                    e.printStackTrace();
+                } finally {
+                    if (cursor != null) {
+                        try {
+                            cursor.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
+
+
             }
+        });
 
-        }
-    });
 
-}
+        Clicked = (Button) findViewById(R.id.button2);
+
+        Clicked.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                if (!ensureExternalStoragePermissionGranted()) {
+                    Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                //start card
+                ArrayList<String> web = new ArrayList<String>();
+                Cursor cursor = null;
+                try {
+                    web.add("https://picsum.photos/id/249/400/200");
+                    web.add("https://picsum.photos/id/225/400/400");
+                    web.add("https://picsum.photos/id/82/40/100");
+                    web.add("https://picsum.photos/id/960/400/50");
+                    web.add("https://picsum.photos/id/151/500/200");
+                    web.add("https://picsum.photos/id/507/400/200");
+                    web.add("https://picsum.photos/id/1055/40/100");
+                    web.add("https://picsum.photos/id/468/200/200");
+                    web.add("https://picsum.photos/id/887/300/200");
+                    web.add("https://picsum.photos/id/618/500/200");
+                    web.add("https://picsum.photos/id/800/400/200");
+                    web.add("https://picsum.photos/id/452/400/200");
+                    web.add("https://picsum.photos/id/159/400/200");
+                    web.add("https://picsum.photos/id/500/400/20");
+                    web.add("https://picsum.photos/id/836/500/200");
+                    web.add("https://picsum.photos/id/350/400/200");
+                    web.add("https://picsum.photos/id/235/400/400");
+                    web.add("https://picsum.photos/id/344/40/100");
+                    web.add("https://picsum.photos/id/157/400/50");
+                    web.add("https://picsum.photos/id/200/500/200");
+                    web.add("https://simgbb.com/images/logo.png");
+                    web.add("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
+
+
+                    RecycleAdapterCards recycleAdapterCards = new RecycleAdapterCards(MainActivity.this, web);
+                    recyclerView.setAdapter(recycleAdapterCards);
+                    recyclerView.setItemAnimator(null);
+
+                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                            super.onScrollStateChanged(recyclerView, newState);
+                            ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
+                        }
+                    });
+
+                } catch (
+                        Throwable e) {
+                    e.printStackTrace();
+                } finally {
+                    if (cursor != null) {
+                        try {
+                            cursor.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+            }
+        });
+
+
+    }
 
     private boolean ensureExternalStoragePermissionGranted() {
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED ) {         //if doesn't already have permission
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.INTERNET)        //TODO:add read storage permission for internal file
+                != PackageManager.PERMISSION_GRANTED) {         //if doesn't already have permission
             ActivityCompat.requestPermissions(
                     this,
                     new String[]{Manifest.permission.INTERNET},
@@ -175,7 +240,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
         if (grantResults.length > 0
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             //TODO: add method call to grid view method
@@ -193,11 +259,4 @@ public class MainActivity extends AppCompatActivity {
         return noOfColumns;
     }
 
-
 }
-
-
-
-
-
-
