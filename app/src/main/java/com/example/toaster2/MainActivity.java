@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
 
@@ -119,6 +120,25 @@ public class MainActivity extends AppCompatActivity {
 
                     RecycleAdapter recycleAdapter = new RecycleAdapter(MainActivity.this, web);
                     recyclerView.setAdapter(recycleAdapter);
+                    recyclerView.setItemAnimator(null);
+
+                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                            super.onScrollStateChanged(recyclerView, newState);
+                            ((StaggeredGridLayoutManager)recyclerView.getLayoutManager()).invalidateSpanAssignments();
+                        }
+                    });
+
+
+//                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//                        @Override
+//                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                            if(newState == RecyclerView.SCROLL_STATE_IDLE){
+//                                recyclerView.invalidateItemDecorations();
+//                            }
+//                        }
+//                    });
 
             } catch(
             Throwable e)

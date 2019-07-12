@@ -81,7 +81,7 @@ public class GridAdapter extends ArrayAdapter<String> {
     public void display(String imagePath, View view, SimpleDraweeView holder)
     {
 //        Uri uri=Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
-        Fresco.getImagePipeline().clearCaches();
+//        Fresco.getImagePipeline().clearCaches();
 //        SimpleDraweeView draweeView = (SimpleDraweeView)view.findViewById(R.id.drawee_view);
 //        draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
 //        Uri uri = new Uri.Builder()

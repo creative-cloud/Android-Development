@@ -8,12 +8,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
@@ -21,15 +20,10 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
-
 import java.io.File;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 
-public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
+public class RecycleAdapter extends RecyclerView.Adapter  {
 
 
     private Context mContext;
@@ -56,14 +50,17 @@ public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        Fresco.getImagePipeline().clearCaches();
+    //        Fresco.getImagePipeline().clearCaches();
+
         final SimpleDraweeView draweeView = (SimpleDraweeView) viewHolder.itemView.findViewById(R.id.img_view);
 
         imgURLs.set(i, imgURLs.get(i).replace(" ", "/"));
-        Uri imageUri = Uri.fromFile(new File(imgURLs.get(i)));// For files on device
+
+        // For files on device
+        //        Uri imageUri = Uri.fromFile(new File(imgURLs.get(i)));
+
         draweeView.setImageURI(imgURLs.get(i));
         final String path = imgURLs.get(i);
-        final Bitmap[] myBitmap = {null};
 
 
         ControllerListener listener = new BaseControllerListener() {
@@ -82,15 +79,14 @@ public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setLowResImageRequest(ImageRequest.fromUri("https://langleyinsuranceagents.com/wp-content/uploads/2018/09/image-placeholder.png"))
                 .setImageRequest(ImageRequest.fromUri(path))
+                .setUri(path)
                 .setOldController(draweeView.getController())
                 .setControllerListener(listener)
-//                .setRetryImage(R.color.colorPrimary)
-//                .setPlaceholderImage(R.color.colorPrimaryDark)
-                .setAutoPlayAnimations(true)
+//                .setAutoPlayAnimations(true)
                 .build();
 
         draweeView.setController(controller);
-//        draweeView.getHierarchy();
+        draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
         draweeView.getHierarchy().setPlaceholderImage(R.color.colorPrimaryDark);
 
 
@@ -101,6 +97,8 @@ public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
 
 
         Log.e("image url", "" + imgURLs.get(i));
+
+//        viewHolder.itemView.requestLayout();
     }
 
     private void updateViewSize(SimpleDraweeView draweeView, ImageInfo imageInfo) {
@@ -114,11 +112,6 @@ public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
         return imgURLs.size();
     }
 
-    @Override
-    public void run() {
-
-    }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         SimpleDraweeView draweeView;
@@ -128,8 +121,6 @@ public class RecycleAdapter extends RecyclerView.Adapter implements Runnable {
             // get the reference of item view's
             draweeView = itemView.findViewById(R.id.img_view);
         }
-
-
     }
 }
 
