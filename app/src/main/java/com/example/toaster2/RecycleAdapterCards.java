@@ -78,12 +78,13 @@ public class RecycleAdapterCards extends RecyclerView.Adapter{
         draweeView.getHierarchy().setRetryImage(R.color.colorPrimary);
         draweeView.getHierarchy().setPlaceholderImage(R.color.colorPrimaryDark);
 
-        if(i%3==0)
-        {
-            TextView t4=viewHolder.itemView.findViewById(R.id.t4);
-            t4.setVisibility(View.VISIBLE);
-
-        }
+        //creating a stagger
+//        if(i%3==0)
+//        {
+//            TextView t4=viewHolder.itemView.findViewById(R.id.t4);
+//            t4.setVisibility(View.VISIBLE);
+//
+//        }
 
     }
 
@@ -103,14 +104,12 @@ public class RecycleAdapterCards extends RecyclerView.Adapter{
     public class CardViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         SimpleDraweeView draweeView;
-//        TextView t4;
 
 
         public CardViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             draweeView = itemView.findViewById(R.id.card_view);
-//            t4=itemView.findViewById(R.id.t4);
         }
     }
 
