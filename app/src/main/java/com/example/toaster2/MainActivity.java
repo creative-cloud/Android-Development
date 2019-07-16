@@ -30,10 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
 
-
-
-
-
         setContentView(R.layout.activity_main);
         final View view = findViewById(android.R.id.content);
         Uri uri = Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
@@ -93,12 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            PhotoFragment fragment = new PhotoFragment(web);
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
-        }
+
 
         Clicked.setOnClickListener(new View.OnClickListener() {
 
@@ -188,15 +179,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-//                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//                        @Override
-//                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                            if(newState == RecyclerView.SCROLL_STATE_IDLE){
-//                                recyclerView.invalidateItemDecorations();
-//                            }
-//            }
-//                    });
-
               /*  } catch (
                         Throwable e) {
                     e.printStackTrace();
@@ -212,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }*/
+
           }
         });
 
@@ -242,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Clicked = (Button) findViewById(R.id.button2);
+        Clicked = (Button) findViewById(R.id.button3);
 
         Clicked.setOnClickListener(new View.OnClickListener() {
 
@@ -253,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent =new Intent();
+                Intent intent =new Intent(getBaseContext(), Carousel.class);
 
-//                intent.
-//                startActivity(intent);
+                intent.putExtra("url",web);
+                startActivity(intent);
 
             }
 
@@ -285,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
 
         }
-
     }
 
     public static int calculateNoOfColumns(Context context, float columnWidthDp) {

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -52,12 +53,12 @@ public class PhotoFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 15;
+            return web.size();
         }
 
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-            return false;       //check
+            return o == view;
         }
 
         @NonNull
@@ -66,10 +67,16 @@ public class PhotoFragment extends Fragment {
 
             View view = getActivity().getLayoutInflater().inflate(R.layout.pager_item,
                     container, false);
-            container.addView(view);
-            SimpleDraweeView simpleDraweeView=view.findViewById(R.id.img_view);
+
+
+            SimpleDraweeView simpleDraweeView=view.findViewById(R.id.carousel_draw);
             simpleDraweeView.setImageURI(web.get(position));
+//            simpleDraweeView.setImageURI("https://media.wired.com/photos/5b8999943667562d3024c321/master/w_582,c_limit/trash2-01.jpg");
             Log.e("Setting url",""+web.get(position));
+
+            TextView tv=view.findViewById(R.id.text2);
+            tv.setText("Photo Number "+(position+1));
+            container.addView(view);
             return view;
         }
 
