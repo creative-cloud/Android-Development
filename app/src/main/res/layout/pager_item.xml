@@ -19,6 +19,14 @@
         fresco:failureImage="@color/colorAccent"
         />
 
+    <ImageView
+        android:id="@+id/rectimage"
+        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/rect">
+    </ImageView>
+
+
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
@@ -26,7 +34,7 @@
         android:layout_gravity="bottom"
         android:text="text is working"
         android:textSize="25dp"
-
+android:visibility="gone"
         />
 
 

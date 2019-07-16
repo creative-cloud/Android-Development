@@ -16,14 +16,13 @@ public class Carousel extends AppCompatActivity {
     CarouselView customCarouselView;
     ArrayList<String> web;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carousel);
         web=getIntent().getExtras().getStringArrayList("url");
         customCarouselView = (CarouselView) findViewById(R.id.customCarouselView);
+        customCarouselView.setSlideInterval(2500);
         int NUMBER_OF_PAGES = web.size();
         customCarouselView.setPageCount(NUMBER_OF_PAGES);
         // set ViewListener for custom view
@@ -45,7 +44,4 @@ public class Carousel extends AppCompatActivity {
             return customView;
         }
     };
-
-
-
 }
