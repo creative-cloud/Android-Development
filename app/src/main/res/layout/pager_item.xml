@@ -10,7 +10,7 @@
 
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/carousel_draw"
+        android:id="@+id/swiper_draw"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="10dp"

@@ -69,9 +69,8 @@ public class PhotoFragment extends Fragment {
                     container, false);
 
 
-            SimpleDraweeView simpleDraweeView=view.findViewById(R.id.carousel_draw);
+            SimpleDraweeView simpleDraweeView=view.findViewById(R.id.swiper_draw);
             simpleDraweeView.setImageURI(web.get(position));
-//            simpleDraweeView.setImageURI("https://media.wired.com/photos/5b8999943667562d3024c321/master/w_582,c_limit/trash2-01.jpg");
             Log.e("Setting url",""+web.get(position));
 
             TextView tv=view.findViewById(R.id.text2);

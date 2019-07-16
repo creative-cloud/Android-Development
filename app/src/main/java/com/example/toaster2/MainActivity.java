@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -236,6 +235,27 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Intent intent =new Intent(getBaseContext(), Swiper.class);
+
+                intent.putExtra("url",web);
+                startActivity(intent);
+
+            }
+
+        });
+
+
+        Clicked = (Button) findViewById(R.id.button4);
+
+        Clicked.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (!ensureExternalStoragePermissionGranted()) {
+                    Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent =new Intent(getBaseContext(), Carousel.class);
 
                 intent.putExtra("url",web);
@@ -244,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     private boolean ensureExternalStoragePermissionGranted() {
