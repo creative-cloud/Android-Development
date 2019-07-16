@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final View view = findViewById(android.R.id.content);
         Uri uri = Uri.parse("https://homepages.cae.wisc.edu/~ece533/images/serrano.png");
 
-         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             web.add("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
 
 
-
         } catch (
                 Throwable e) {
             e.printStackTrace();
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
 
 
         Clicked.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
 
-            *//*cursor = MediaStore.Images.Media.query(
+                cursor = MediaStore.Images.Media.query(
                     getContentResolver(),
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
                     null, null,
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     if (path.equals("in"))
                         continue;
                     web.add(path);
-*//*
+
 
                     //local images
 //
@@ -178,26 +177,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-              /*  } catch (
-                        Throwable e) {
-                    e.printStackTrace();
-                } finally {
-                    if (cursor != null) {
-                        try {
-                            cursor.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-
-            }*/
-
-          }
+            }
         });
-
-
 
 
         Clicked = (Button) findViewById(R.id.button2);
@@ -208,18 +189,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-                    RecycleAdapterCards recycleAdapterCards = new RecycleAdapterCards(MainActivity.this, web);
-                    recyclerView.setAdapter(recycleAdapterCards);
-                    recyclerView.setItemAnimator(null);
-
-                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                        @Override
-                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                            super.onScrollStateChanged(recyclerView, newState);
-                            ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
-                        }
-                    });
+                Log.e("testing click", "clicked");
+                RecycleAdapterCards recycleAdapterCards = new RecycleAdapterCards(MainActivity.this, web);
+                recyclerView.setAdapter(recycleAdapterCards);
+                recyclerView.setItemAnimator(null);
+                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
+                    }
+                });
 
             }
         });
@@ -235,9 +215,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent =new Intent(getBaseContext(), Swiper.class);
+                Intent intent = new Intent(getBaseContext(), Swiper.class);
 
-                intent.putExtra("url",web);
+                intent.putExtra("url", web);
                 startActivity(intent);
 
             }
@@ -256,9 +236,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent =new Intent(getBaseContext(), Carousel.class);
+                Intent intent = new Intent(getBaseContext(), Carousel.class);
 
-                intent.putExtra("url",web);
+                intent.putExtra("url", web);
                 startActivity(intent);
 
             }
