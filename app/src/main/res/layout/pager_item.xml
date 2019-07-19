@@ -9,7 +9,18 @@
 
 
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+        <!--android:id="@+id/swiper_draw"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_margin="10dp"-->
+        <!--fresco:failureImage="@color/colorAccent"-->
+        <!--&lt;!&ndash;android:visibility="gone"&ndash;&gt;-->
+        <!--/>-->
+
+    <me.relex.photodraweeview.PhotoDraweeView
         android:id="@+id/swiper_draw"
         android:layout_width="match_parent"
         android:layout_height="300dp"

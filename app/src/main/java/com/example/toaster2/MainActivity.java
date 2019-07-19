@@ -95,75 +95,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                /*if (!ensureExternalStoragePermissionGranted()) {
-                    Toast.makeText(getBaseContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                //start grid
-
-                ArrayList<String> web = new ArrayList<String>();
-
-
-                Cursor cursor = null;
-
-                try {
-
-                cursor = MediaStore.Images.Media.query(
-                    getContentResolver(),
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null,
-                    null, null,
-                    MediaStore.Images.Media.DATE_TAKEN + " DESC");
-            if (cursor != null) {
-                int dataColumn = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
-
-                while (cursor.moveToNext()) {
-                    String path = cursor.getString(dataColumn);
-
-                    if (path == null || path.length() == 0) {
-                        continue;
-                    }
-                    if (path.equals("in"))
-                        continue;
-                    web.add(path);
-
-
-                    //local images
-//
-//                    File fileDirectory = new File("/storage/4DD2-986A/Scenery/");
-//                    File[] dirFiles = fileDirectory.listFiles();
-//                    if (dirFiles.length != 0) {
-//                        for (File file : dirFiles) {
-//                            web.add("file://"+file.toString());
-//                        }
-//                    }
-
-
-                    web.add("https://picsum.photos/id/249/400/200");
-                    web.add("https://picsum.photos/id/225/400/400");
-                    web.add("https://picsum.photos/id/82/40/100");
-                    web.add("https://picsum.photos/id/960/400/50");
-                    web.add("https://picsum.photos/id/151/500/200");
-                    web.add("https://picsum.photos/id/507/400/200");
-                    web.add("https://picsum.photos/id/1055/40/100");
-                    web.add("https://picsum.photos/id/468/200/200");
-                    web.add("https://picsum.photos/id/887/300/200");
-                    web.add("https://picsum.photos/id/618/500/200");
-                    web.add("https://picsum.photos/id/800/400/200");
-                    web.add("https://picsum.photos/id/452/400/200");
-                    web.add("https://picsum.photos/id/159/400/200");
-                    web.add("https://picsum.photos/id/500/400/20");
-                    web.add("https://picsum.photos/id/836/500/200");
-                    web.add("https://picsum.photos/id/350/400/200");
-                    web.add("https://picsum.photos/id/235/400/400");
-                    web.add("https://picsum.photos/id/344/40/100");
-                    web.add("https://picsum.photos/id/157/400/50");
-                    web.add("https://picsum.photos/id/200/500/200");
-                    web.add("https://simgbb.com/images/logo.png");
-                    web.add("https://homepages.cae.wisc.edu/~ece533/images/airplane.png");
-*/
-
                 RecycleAdapterImages recycleAdapterImages = new RecycleAdapterImages(MainActivity.this, web);
                 recyclerView.setAdapter(recycleAdapterImages);
                 recyclerView.setItemAnimator(null);
@@ -175,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
                         ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
                     }
                 });
-
-
             }
         });
 
@@ -200,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                         ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).invalidateSpanAssignments();
                     }
                 });
-
             }
         });
 

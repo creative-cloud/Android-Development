@@ -1,6 +1,7 @@
 package com.example.toaster2;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ViewListener;
 
 import java.util.ArrayList;
+
+import me.relex.photodraweeview.PhotoDraweeView;
 
 public class Carousel extends AppCompatActivity {
 
@@ -35,11 +38,11 @@ public class Carousel extends AppCompatActivity {
         public View setViewForPosition(int position) {
             View customView = getLayoutInflater().inflate(R.layout.pager_item, null);
             //set view attributes here
+//            SimpleDraweeView draweeView =customView.findViewById(R.id.swiper_draw);
+//            draweeView.setImageURI(web.get(position));
 
-
-            SimpleDraweeView draweeView =customView.findViewById(R.id.swiper_draw);
-
-            draweeView.setImageURI(web.get(position));
+            PhotoDraweeView mPhotoDraweeView = customView.findViewById(R.id.swiper_draw);
+            mPhotoDraweeView.setPhotoUri(Uri.parse(web.get(position)));
 
             return customView;
         }
